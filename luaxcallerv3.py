@@ -9,6 +9,7 @@ asa = '123456789'
 gigk = ''.join(random.choice(asa) for i in range(10))
 md5 = hashlib.md5(gigk.encode()).hexdigest()[:16]
 
+
 headers = {
     "clientsecret": 'lvc22mp3l1sfv6ujg83rd17btt',
     "user-agent": 'Truecaller/12.34.8 (Android;8.1.2)',
@@ -16,6 +17,7 @@ headers = {
     "content-type": 'application/json; charset=UTF-8',
     "Host": 'account-asia-south1.truecaller.com'
 }
+
 
 url = 'https://account-asia-south1.truecaller.com/v3/sendOnboardingOtp'
 
@@ -25,6 +27,7 @@ def print_typing_effect(text, delay=0.05):
         sys.stdout.flush()
         time.sleep(delay)
     print()
+
 
 def send_otp(phone_number):
     data = {
