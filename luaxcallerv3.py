@@ -1,15 +1,13 @@
 import requests
 import random
 import hashlib
-import time
-import pyfiglet
-import sys
 
+# Generate a unique identifier for the request
 asa = '123456789'
 gigk = ''.join(random.choice(asa) for i in range(10))
 md5 = hashlib.md5(gigk.encode()).hexdigest()[:16]
 
-
+# Headers for the request
 headers = {
     "clientsecret": 'lvc22mp3l1sfv6ujg83rd17btt',
     "user-agent": 'Truecaller/12.34.8 (Android;8.1.2)',
@@ -18,16 +16,7 @@ headers = {
     "Host": 'account-asia-south1.truecaller.com'
 }
 
-
 url = 'https://account-asia-south1.truecaller.com/v3/sendOnboardingOtp'
-
-def print_typing_effect(text, delay=0.05):
-    for char in text:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(delay)
-    print()
-
 
 def send_otp(phone_number):
     data = {
@@ -75,19 +64,9 @@ def send_otp(phone_number):
         else:
             phonum = response_data.get('parsedPhoneNumber')
             coucode = response_data.get('parsedCountryCode')
-            print_typing_effect(f'Arama başarıyla gönderildi✓.: {phonum}, Ülke kodu : {coucode}.')
+            print(f'Arama başarıyla gönderildi✓.: {phonum}, Ülke kodu : {coucode}.')
     else:
         print('Failed to send OTP.')
 
-ascii_banner = pyfiglet.figlet_format("luaxcaller")
-print(ascii_banner)
-
 phone_number = input("Telefon numarasını gir örn; +905555555555): ")
-
-for attempt in range(3):
-    send_otp(phone_number)
-    if attempt < 2:
-        print_typing_effect(f'{attempt + 1}. arama gönderildi, 30 saniye bekleyin...')
-        time.sleep(30)
-    else:
-        print_typing_effect(f'{attempt + 1}. arama gönderildi.')
+send_otp(phone_number)
