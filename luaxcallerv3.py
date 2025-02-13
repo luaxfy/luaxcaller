@@ -2,12 +2,10 @@ import requests
 import random
 import hashlib
 
-# Generate a unique identifier for the request
 asa = '123456789'
 gigk = ''.join(random.choice(asa) for i in range(10))
 md5 = hashlib.md5(gigk.encode()).hexdigest()[:16]
 
-# Headers for the request
 headers = {
     "clientsecret": 'lvc22mp3l1sfv6ujg83rd17btt',
     "user-agent": 'Truecaller/12.34.8 (Android;8.1.2)',
